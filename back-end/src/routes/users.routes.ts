@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
+import { createUserController, deleteUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
 import { userSchemaRequest, userUpdateSchemaRequest } from "../schemas/users.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
@@ -31,6 +31,14 @@ usersRoutes.get(
     notAdminVerifyMiddleware,
     inputDataValidCheckMiddleWare(userUpdateSchemaRequest),
     updateUserController
+  );
+
+  usersRoutes.delete(
+    "/:id",
+    tokenValidCheckMiddleware,
+    userIdExistsCheckMiddleware,
+    adminVerifyMiddleware,
+    deleteUserController
   );
 
 export { usersRoutes };

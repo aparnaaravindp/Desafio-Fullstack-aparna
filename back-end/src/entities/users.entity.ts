@@ -1,4 +1,4 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 @Entity("users")
 class User {
@@ -17,6 +17,8 @@ class User {
   password: string;
   @Column({ type: "date" })
   registrationDate: string | Date;
+  @DeleteDateColumn({ nullable: true, type: "date" })
+  deletedAt: string | Date | null;
 
   @BeforeInsert()
   @BeforeUpdate()

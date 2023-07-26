@@ -8,10 +8,12 @@ const userSchema = z.object({
   admin: z.boolean().default(false),
   password: z.string().max(120),
   registrationDate: z.string(),
+  deletedAt: z.string().nullish()
 });
 
 const userSchemaRequest = userSchema.omit({
   id: true,
+  deletedAt: true,
 });
 
 const userSchemaResponse = userSchema.omit({
