@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { createUserController, listUsersController } from "../controllers/users.controllers";
+import { createUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
-import { userSchemaRequest } from "../schemas/users.schema";
+import { userSchemaRequest, userUpdateSchemaRequest } from "../schemas/users.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
 import { adminVerifyMiddleware } from "../middlewares/adminVerify.middleware";
+import { userIdExistsCheckMiddleware } from "../middlewares/userIdExistsCheck.middleware";
+import { notAdminVerifyMiddleware } from "../middlewares/notAdminVerify.middleware";
 
 const usersRoutes: Router = Router();
 
@@ -20,6 +22,15 @@ usersRoutes.get(
     tokenValidCheckMiddleware,
      adminVerifyMiddleware,
     listUsersController 
+  );
+
+  usersRoutes.patch(
+    "/:id",
+    tokenValidCheckMiddleware,
+    userIdExistsCheckMiddleware,
+    notAdminVerifyMiddleware,
+    inputDataValidCheckMiddleWare(userUpdateSchemaRequest),
+    updateUserController
   );
 
 export { usersRoutes };

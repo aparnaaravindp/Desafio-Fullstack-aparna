@@ -5,6 +5,7 @@ import {
   userSchemaResponse,
   usersSchemaResponse,
 } from "../schemas/users.schema";
+import { DeepPartial } from "typeorm";
 
 type TUserRequest = z.infer<typeof userSchemaRequest>;
 type TUserResponse = z.infer<typeof userSchemaResponse>;
@@ -13,7 +14,15 @@ type TEmail = {
   email: string;
 };
 
-
 type TUsersResponse = z.infer<typeof usersSchemaResponse>;
 
-export { TUserRequest, TUserResponse, TUser, TEmail, TUsersResponse };
+type TUserUpdateRequest = DeepPartial<TUserRequest>;
+
+export {
+  TUserRequest,
+  TUserResponse,
+  TUser,
+  TEmail,
+  TUsersResponse,
+  TUserUpdateRequest,
+};

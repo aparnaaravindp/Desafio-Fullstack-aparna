@@ -20,9 +20,14 @@ const userSchemaResponse = userSchema.omit({
 
 const usersSchemaResponse = z.array(userSchemaResponse);
 
+const userUpdateSchemaRequest = userSchemaRequest
+  .omit({ admin: true })
+  .partial();
+
 export {
   userSchema,
   userSchemaRequest,
   userSchemaResponse,
   usersSchemaResponse,
+  userUpdateSchemaRequest
 };
