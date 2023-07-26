@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { getRounds, hashSync } from "bcryptjs";
 @Entity("users")
 class User {
   @PrimaryGeneratedColumn("increment")
@@ -11,8 +11,19 @@ class User {
   email: string;
   @Column({ type: "integer" })
   telephone: number;
+  @Column({ type: "varchar", length: 120 })
+  password: string;
   @Column({ type: "date" })
-  registrationDate: Date;
+  registrationDate: string | Date;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    const isEncrypted = getRounds(this.password);
+    if (!isEncrypted) {
+      this.password = hashSync(this.password, 10);
+    }
+  }
 }
 
 export { User}
