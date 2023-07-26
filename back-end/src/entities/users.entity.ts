@@ -11,6 +11,8 @@ class User {
   email: string;
   @Column({ type: "integer" })
   telephone: number;
+  @Column({ type: "boolean", default: false })
+  admin: boolean;
   @Column({ type: "varchar", length: 120 })
   password: string;
   @Column({ type: "date" })

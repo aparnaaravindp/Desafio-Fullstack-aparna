@@ -5,20 +5,24 @@ const userSchema = z.object({
   fullname: z.string().max(45),
   email: z.string().email().max(45),
   telephone: z.number().int(),
-  password:z.string().max(120),
+  admin: z.boolean().default(false),
+  password: z.string().max(120),
   registrationDate: z.string(),
- 
 });
 
-
 const userSchemaRequest = userSchema.omit({
-    id:true
-})
-
+  id: true,
+});
 
 const userSchemaResponse = userSchema.omit({
-    password:true
-})
+  password: true,
+});
 
+const usersSchemaResponse = z.array(userSchemaResponse);
 
-export{ userSchema, userSchemaRequest, userSchemaResponse}
+export {
+  userSchema,
+  userSchemaRequest,
+  userSchemaResponse,
+  usersSchemaResponse,
+};

@@ -3,6 +3,7 @@ import {
   userSchema,
   userSchemaRequest,
   userSchemaResponse,
+  usersSchemaResponse,
 } from "../schemas/users.schema";
 
 type TUserRequest = z.infer<typeof userSchemaRequest>;
@@ -12,4 +13,7 @@ type TEmail = {
   email: string;
 };
 
-export { TUserRequest, TUserResponse, TUser, TEmail };
+
+type TUsersResponse = z.infer<typeof usersSchemaResponse>;
+
+export { TUserRequest, TUserResponse, TUser, TEmail, TUsersResponse };
