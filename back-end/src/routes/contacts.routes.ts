@@ -1,15 +1,26 @@
 import { Router } from "express";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
-import { contactSchemaRequest, contactUpdateSchemaRequest } from "../schemas/contacts.schema";
+import {
+  contactSchemaRequest,
+  contactUpdateSchemaRequest,
+} from "../schemas/contacts.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
-import { createContactController, updateCotactController } from "../controllers/contacts.controllers";
+import {
+  createContactController,
+  updateCotactController,
+} from "../controllers/contacts.controllers";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
-import { listUsersController } from "../controllers/users.controllers";
+import {
+  deleteUserController,
+  listUsersController,
+} from "../controllers/users.controllers";
+import { ownerVerifyMiddleware } from "../middlewares/ownerVerify.middleware";
 
 const contactsRoutes: Router = Router();
 
 contactsRoutes.post(
   "",
+  tokenValidCheckMiddleware,
   inputDataValidCheckMiddleWare(contactSchemaRequest),
   emailExistsCheckMiddleware,
   createContactController
@@ -17,18 +28,19 @@ contactsRoutes.post(
 
 contactsRoutes.get("", tokenValidCheckMiddleware, listUsersController);
 
-  contactsRoutes.patch(
-    "/:id",
-    inputDataValidCheckMiddleWare(contactUpdateSchemaRequest),
-    updateCotactController
-  );
+contactsRoutes.patch(
+  "/:id",
+  tokenValidCheckMiddleware,
+  ownerVerifyMiddleware,
+  inputDataValidCheckMiddleWare(contactUpdateSchemaRequest),
+  updateCotactController
+);
 
-/*   usersRoutes.delete(
-    "/:id",
-    tokenValidCheckMiddleware,
-    userIdExistsCheckMiddleware,
-    adminVerifyMiddleware,
-    deleteUserController
-  );   */
+contactsRoutes.delete(
+  "/:id",
+  tokenValidCheckMiddleware,
+  ownerVerifyMiddleware,
+  deleteUserController
+);
 
 export { contactsRoutes };
