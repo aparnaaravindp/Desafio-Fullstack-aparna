@@ -3,6 +3,8 @@ import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.mi
 import { contactSchemaRequest } from "../schemas/contacts.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
 import { createContactController } from "../controllers/contacts.controllers";
+import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
+import { listUsersController } from "../controllers/users.controllers";
 
 const contactsRoutes: Router = Router();
 
@@ -13,14 +15,9 @@ contactsRoutes.post(
   createContactController
 );
 
-/* usersRoutes.get(
-    "",
-    tokenValidCheckMiddleware,
-     adminVerifyMiddleware,
-    listUsersController 
-  );
+contactsRoutes.get("", tokenValidCheckMiddleware, listUsersController);
 
-  usersRoutes.patch(
+/*   usersRoutes.patch(
     "/:id",
     tokenValidCheckMiddleware,
     userIdExistsCheckMiddleware,
@@ -35,6 +32,6 @@ contactsRoutes.post(
     userIdExistsCheckMiddleware,
     adminVerifyMiddleware,
     deleteUserController
-  ); */
+  );  */
 
 export { contactsRoutes };
