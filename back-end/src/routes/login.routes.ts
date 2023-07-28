@@ -1,6 +1,6 @@
 import { Router } from "express";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
-import { loginRequestSchema } from "../schemas/login.schemas";
+import { loginRequestSchema } from "../schemas/login.schema";
 import { loginController } from "../controllers/login.controllers";
 
 const loginRoutes: Router = Router();

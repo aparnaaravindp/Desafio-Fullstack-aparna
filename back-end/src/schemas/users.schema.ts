@@ -7,12 +7,15 @@ const userSchema = z.object({
   telephone: z.number().int(),
   admin: z.boolean().default(false),
   password: z.string().max(120),
-  registrationDate: z.string(),
-  deletedAt: z.string().nullish()
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  deletedAt: z.string().nullish(),
 });
 
 const userSchemaRequest = userSchema.omit({
   id: true,
+  createdAt: true,
+  updatedAt: true,
   deletedAt: true,
 });
 
@@ -31,5 +34,5 @@ export {
   userSchemaRequest,
   userSchemaResponse,
   usersSchemaResponse,
-  userUpdateSchemaRequest
+  userUpdateSchemaRequest,
 };

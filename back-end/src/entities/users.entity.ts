@@ -1,5 +1,6 @@
-import { BeforeInsert, BeforeUpdate, Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
+import { Contact } from "./contacts.entity";
 @Entity("users")
 class User {
   @PrimaryGeneratedColumn("increment")
@@ -15,10 +16,14 @@ class User {
   admin: boolean;
   @Column({ type: "varchar", length: 120 })
   password: string;
-  @Column({ type: "date" })
-  registrationDate: string | Date;
+  @CreateDateColumn({ type: "date" })
+  createdAt: string;
+  @UpdateDateColumn({ type: "date" })
+  updatedAt: string;
   @DeleteDateColumn({ nullable: true, type: "date" })
   deletedAt: string | Date | null;
+  @OneToMany(() => Contact, contact => contact.user)
+  tasks: Contact[]
 
   @BeforeInsert()
   @BeforeUpdate()

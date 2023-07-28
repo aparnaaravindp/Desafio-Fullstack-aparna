@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./users.entity";
 
 @Entity("contacts")
@@ -12,8 +12,8 @@ class Contact {
     email: string;
     @Column({ type: "integer" })
     telephone: number;
-    @Column({ type: "date" })
-    registrationDate: Date;
+    @CreateDateColumn({ type: "date" })
+    createdAt: string;
   
     @ManyToOne(() => User)
     user: User;

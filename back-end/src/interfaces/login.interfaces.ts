@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   loginRequestSchema,
   loginResponseSchema,
-} from "../schemas/login.schemas";
+} from "../schemas/login.schema";
 
 type TLoginRequest = z.infer<typeof loginRequestSchema>;
 
