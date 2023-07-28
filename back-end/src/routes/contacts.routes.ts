@@ -1,8 +1,8 @@
 import { Router } from "express";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
-import { contactSchemaRequest } from "../schemas/contacts.schema";
+import { contactSchemaRequest, contactUpdateSchemaRequest } from "../schemas/contacts.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
-import { createContactController } from "../controllers/contacts.controllers";
+import { createContactController, updateCotactController } from "../controllers/contacts.controllers";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
 import { listUsersController } from "../controllers/users.controllers";
 
@@ -17,21 +17,18 @@ contactsRoutes.post(
 
 contactsRoutes.get("", tokenValidCheckMiddleware, listUsersController);
 
-/*   usersRoutes.patch(
+  contactsRoutes.patch(
     "/:id",
-    tokenValidCheckMiddleware,
-    userIdExistsCheckMiddleware,
-    notAdminVerifyMiddleware,
-    inputDataValidCheckMiddleWare(userUpdateSchemaRequest),
-    updateUserController
+    inputDataValidCheckMiddleWare(contactUpdateSchemaRequest),
+    updateCotactController
   );
 
-  usersRoutes.delete(
+/*   usersRoutes.delete(
     "/:id",
     tokenValidCheckMiddleware,
     userIdExistsCheckMiddleware,
     adminVerifyMiddleware,
     deleteUserController
-  );  */
+  );   */
 
 export { contactsRoutes };
