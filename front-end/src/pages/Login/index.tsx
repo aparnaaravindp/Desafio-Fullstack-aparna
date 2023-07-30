@@ -1,30 +1,25 @@
 import contactBookImage from "../../assets/contactBookImage.svg";
 import { StyledContainer } from "./style";
 import * as yup from "yup";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
 import { Loading } from "./loading";
 import { ILoginData } from "../../providers/@types";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const schema = yup
   .object({
-    email: yup.string().required("Email é obrigatório"),
-    password: yup.string().required("Senha é obrigatório"),
+    email: yup.string().required("Email is required"),
+    password: yup.string().required("Password is required"),
   })
   .required();
 
 export const Login = () => {
 
-    const {loading} = useContext(AuthContext)
+    const {loading, userLogin} = useAuth()
 
-    const { userLogin } = useContext(AuthContext);
-
-    const submit: SubmitHandler<ILoginData> = (data) => {
-      userLogin(data);
-    };
-
+    
   const {
     register,
     handleSubmit,
@@ -44,7 +39,7 @@ export const Login = () => {
             <h1>Customer Register</h1>
           </div>
           <div className="loginForm">
-            <form onSubmit={handleSubmit(submit)}>
+            <form onSubmit={handleSubmit(userLogin)}>
               <div className="emailDiv">
                 <label htmlFor="">Email</label>
                 <input type="text" placeholder="Email" {...register("email")} />
