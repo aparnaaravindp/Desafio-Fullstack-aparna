@@ -12,18 +12,14 @@ class User {
   email: string;
   @Column({ type: "integer" })
   telephone: number;
-  @Column({ type: "boolean", default: false })
-  admin: boolean;
   @Column({ type: "varchar", length: 120 })
   password: string;
   @CreateDateColumn({ type: "date" })
   createdAt: string;
   @UpdateDateColumn({ type: "date" })
   updatedAt: string;
-  @DeleteDateColumn({ nullable: true, type: "date" })
-  deletedAt: string | Date | null;
   @OneToMany(() => Contact, contact => contact.user)
-  tasks: Contact[]
+  contacts: Contact[]
 
   @BeforeInsert()
   @BeforeUpdate()

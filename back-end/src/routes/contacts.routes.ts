@@ -7,6 +7,8 @@ import {
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
 import {
   createContactController,
+  deleteCotactController,
+  listContactsController,
   updateCotactController,
 } from "../controllers/contacts.controllers";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
@@ -15,6 +17,7 @@ import {
   listUsersController,
 } from "../controllers/users.controllers";
 import { ownerVerifyMiddleware } from "../middlewares/ownerVerify.middleware";
+/* import { ownerVerifyMiddleware } from "../middlewares/ownerVerify.middleware"; */
 
 const contactsRoutes: Router = Router();
 
@@ -26,7 +29,7 @@ contactsRoutes.post(
   createContactController
 );
 
-contactsRoutes.get("", tokenValidCheckMiddleware, listUsersController);
+contactsRoutes.get("", tokenValidCheckMiddleware, listContactsController);
 
 contactsRoutes.patch(
   "/:id",
@@ -40,7 +43,7 @@ contactsRoutes.delete(
   "/:id",
   tokenValidCheckMiddleware,
   ownerVerifyMiddleware,
-  deleteUserController
+  deleteCotactController
 );
 
 export { contactsRoutes };

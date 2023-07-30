@@ -1,12 +1,19 @@
 import { Router } from "express";
-import { createUserController, deleteUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
+import {
+  createUserController,
+  deleteUserController,
+  listUsersController,
+  updateUserController,
+} from "../controllers/users.controllers";
 import inputDataValidCheckMiddleWare from "../middlewares/inputDataValidCheck.middleware";
-import { userSchemaRequest, userUpdateSchemaRequest } from "../schemas/users.schema";
+import {
+  userSchemaRequest,
+  userUpdateSchemaRequest,
+} from "../schemas/users.schema";
 import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.middleware";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
-import { adminVerifyMiddleware } from "../middlewares/adminVerify.middleware";
 import { userIdExistsCheckMiddleware } from "../middlewares/userIdExistsCheck.middleware";
-import { notAdminVerifyMiddleware } from "../middlewares/notAdminVerify.middleware";
+
 
 const usersRoutes: Router = Router();
 
@@ -17,28 +24,21 @@ usersRoutes.post(
   createUserController
 );
 
-usersRoutes.get(
-    "",
-    tokenValidCheckMiddleware,
-     adminVerifyMiddleware,
-    listUsersController 
-  );
+usersRoutes.get("", tokenValidCheckMiddleware, listUsersController);
 
-  usersRoutes.patch(
-    "/:id",
-    tokenValidCheckMiddleware,
-    userIdExistsCheckMiddleware,
-    notAdminVerifyMiddleware,
-    inputDataValidCheckMiddleWare(userUpdateSchemaRequest),
-    updateUserController
-  );
+usersRoutes.patch(
+  "/:id",
+  tokenValidCheckMiddleware,
+  userIdExistsCheckMiddleware,
+  inputDataValidCheckMiddleWare(userUpdateSchemaRequest),
+  updateUserController
+);
 
-  usersRoutes.delete(
-    "/:id",
-    tokenValidCheckMiddleware,
-    userIdExistsCheckMiddleware,
-    adminVerifyMiddleware,
-    deleteUserController
-  );
+usersRoutes.delete(
+  "/:id",
+  tokenValidCheckMiddleware,
+  userIdExistsCheckMiddleware,
+  deleteUserController
+);
 
 export { usersRoutes };

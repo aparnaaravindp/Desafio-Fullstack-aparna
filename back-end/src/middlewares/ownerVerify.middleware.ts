@@ -11,8 +11,8 @@ const ownerVerifyMiddleware = async (
   const contactRepository: Repository<Contact> =
     AppDataSource.getRepository(Contact);
 
-  const contactId: number = req.params.id;
-  const userId: number = res.locals.id;
+  const contactId: number= parseInt(req.params.id);
+  const userId = res.locals.id;
 
   const contact: Contact | null = await contactRepository.findOne({
     where: {
@@ -24,13 +24,13 @@ const ownerVerifyMiddleware = async (
   });
 
   if (!contact) {
-    res.status(404).json({
+    return res.status(404).json({
       message: "Contact not found",
     });
   }
-
-  if (contact?.user.id !== userId) {
-    res.status(403).json({
+console.log(contact, userId)
+  if (contact?.user.id !== parseInt(userId)) {
+    return res.status(403).json({
       message: "Insufficient permission",
     });
   }
@@ -39,3 +39,4 @@ const ownerVerifyMiddleware = async (
 };
 
 export { ownerVerifyMiddleware };
+ 

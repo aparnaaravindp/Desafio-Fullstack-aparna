@@ -14,7 +14,7 @@ class Contact {
     telephone: number;
     @CreateDateColumn({ type: "date" })
     createdAt: string;
-  
+
     @ManyToOne(() => User)
     user: User;
   }

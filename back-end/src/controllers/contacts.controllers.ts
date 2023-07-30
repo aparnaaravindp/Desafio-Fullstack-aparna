@@ -8,6 +8,7 @@ import createContactsServices from "../services/contacts/createContacts.services
 import listContactsServices from "../services/contacts/listContacts.services";
 import updateCotactsServices from "../services/contacts/updateContacts.services";
 import deleteUsersServices from "../services/users/deleteUsers.services";
+import deleteCotactsServices from "../services/contacts/deleteCotacts.services";
 
 const createContactController = async (
   req: Request,
@@ -23,7 +24,8 @@ const listContactsController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const userId: number = res.locals.id;
+  const userId: number = parseInt(res.locals.id);
+  console.log(userId)
   const contacts = await listContactsServices(userId);
   return res.status(200).json(contacts);
 };
@@ -46,7 +48,7 @@ const deleteCotactController = async (
   res: Response
 ): Promise<Response> => {
   const contactId: number = parseInt(req.params.id);
-  await deleteUsersServices(contactId);
+  await deleteCotactsServices(contactId);
   return res.status(204).send();
 };
 

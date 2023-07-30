@@ -16,16 +16,18 @@ const listContactsServices = async (
     where: {
       id: userId,
     },
+    relations: {
+      contacts: true,
+    },
   });
 
   if (!user) {
-    throw new AppError("User not found", 409);
+    throw new AppError("User not found", 404);
   }
 
-  const contacts: Contact[] = await contactRepository.find();
-
-  const returnContacts: TContactsResponse =
-    contactsSchemaResponse.parse(contacts);
+  const returnContacts: TContactsResponse = contactsSchemaResponse.parse(
+    user.contacts
+  );
   return returnContacts;
 };
 

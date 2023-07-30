@@ -5,7 +5,6 @@ const userSchema = z.object({
   fullname: z.string().max(45),
   email: z.string().email().max(45),
   telephone: z.number().int(),
-  admin: z.boolean().default(false),
   password: z.string().max(120),
   createdAt: z.string(),
   updatedAt: z.string(),
@@ -25,9 +24,7 @@ const userSchemaResponse = userSchema.omit({
 
 const usersSchemaResponse = z.array(userSchemaResponse);
 
-const userUpdateSchemaRequest = userSchemaRequest
-  .omit({ admin: true })
-  .partial();
+const userUpdateSchemaRequest = userSchemaRequest.partial();
 
 export {
   userSchema,
