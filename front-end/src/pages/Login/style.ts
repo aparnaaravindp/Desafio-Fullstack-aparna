@@ -68,7 +68,7 @@ export const StyledContainer = styled.div`
         font-family: "Inter";
         font-weight: 400;
         font-size: 9.73988px;
-        color: red;
+        color: #ffff;
         margin-bottom: 15px;
         margin-top: 5px;
       }
@@ -99,7 +99,7 @@ export const StyledContainer = styled.div`
         font-family: "Inter";
         font-weight: 400;
         font-size: 9.73988px;
-        color: red;
+        color: #ffff;
         margin-bottom: 15px;
         margin-top: 5px;
       }
