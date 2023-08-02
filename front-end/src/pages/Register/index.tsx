@@ -10,9 +10,13 @@ const schema = yup
   .object({
     fullname: yup.string().required("Name is required"),
     email: yup.string().required("Email is required"),
-    telephone: yup.number().typeError("It should be a number"),
+    telephone: yup
+      .number()
+      .typeError("It should be a number")
+      .required("Telephone is required"),
     password: yup
       .string()
+      .required("Password is required")
       .matches(/(\d)/, "Must contain at least 1 number")
       .matches(/[a-z]/, "Must contain at least 1 lower case letter")
       .matches(/[A-Z]/, "Must contain at least 1 capital letter")

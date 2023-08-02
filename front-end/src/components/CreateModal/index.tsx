@@ -12,7 +12,10 @@ export const CreateModal = () => {
     .object({
       fullname: yup.string().required("Name is required"),
       email: yup.string().required("Email is required"),
-      telephone: yup.number().typeError("It should be a number"),
+      telephone: yup
+        .number()
+        .typeError("It should be a number")
+        .required("Telephone is required"),
     })
     .required();
 

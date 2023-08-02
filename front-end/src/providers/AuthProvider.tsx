@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const contactCreate = async (data: IContactData) => {
     try {
       const response = await api.post(`/contacts`, data);
-
+      console.log(contactData);
       setContactData(response.data);
       toast.success("Contact created successfully", { autoClose: 2000 });
     } catch (error) {
