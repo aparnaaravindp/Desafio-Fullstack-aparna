@@ -1,12 +1,11 @@
 import contactBookImage from "../../assets/contactBookImage.svg";
-import { StyledContainer } from "./style";
+import { StyledContainer, StyledLink } from "./style";
 import * as yup from "yup";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Loading } from "./loading";
 import { ILoginData } from "../../providers/@types";
 import { useAuth } from "../../hooks/useAuth";
-
 
 const schema = yup
   .object({
@@ -16,10 +15,8 @@ const schema = yup
   .required();
 
 export const Login = () => {
+  const { loading, userLogin } = useAuth();
 
-    const {loading, userLogin} = useAuth()
-
-    
   const {
     register,
     handleSubmit,
@@ -55,6 +52,7 @@ export const Login = () => {
                 <p>{errors.password?.message}</p>
               </div>
               <button type="submit">Login</button>
+              <StyledLink to="/register">Register</StyledLink>
             </form>
           </div>
         </StyledContainer>

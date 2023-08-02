@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledContainer = styled.div`
@@ -35,7 +36,7 @@ export const StyledContainer = styled.div`
     padding: 10px;
     background-color: #ff5349;
     margin-top: 10px;
-    box-shadow: 0px 3.20867px 32.0867px -8.02168px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3.20867px 32.0867px -8.02168px #ff5349;
     border-radius: 3.20867px;
 
     form {
@@ -115,7 +116,7 @@ export const StyledContainer = styled.div`
       border: 1.2182px solid #f10606;
       border-radius: 4.06066px;
       color: #ffffff;
-      margin-top:60px;
+      margin-top: 35px;
     }
   }
 
@@ -146,4 +147,20 @@ export const StyledContainer = styled.div`
       cursor: pointer;
     }
   }
+`;
+
+export const StyledLink = styled(Link)`
+  color: #ffff;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 18px;
+  width: 100%;
+  height: 38.5px;
+  background-color: #f10606;
+  border: 1.2182px solid #f10606;
+  border-radius: 4px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -37,7 +37,7 @@ export const StyledDashboardHeader = styled.div`
       font-weight: 600;
       font-size: 12px;
       color: #ffff;
-      width: 100px;
+      width: 90px;
       height: 32px;
       background-color: #f10606;
       border-radius: 5px;
