@@ -19,6 +19,11 @@ This application has two tables. One is users and other is contacts. This tables
 **Users**
 
 POST - /users - Create users
+- fullname - string,
+- email - string,
+- telephone - number,
+- password - string
+
 GET - /users - List users - Need authentication
 PATCH - /users/:id - Update user - Need authentication
 DELETE - /users/:id - Delete user - Need authentication
@@ -27,6 +32,10 @@ DELETE - /users/:id - Delete user - Need authentication
 **Contacts**
 
 POST - /contacts - Create contacts
+- fullname - string,
+- email - string,
+- telephone - number,
+- userId - number
 GET - /contacts - List contacts - Need authentication
 PATCH - /contacts/:id - Update contact - Need authentication and authorization
 DELETE - /contacts/:id - Delete contact - Need authentication and authorization
