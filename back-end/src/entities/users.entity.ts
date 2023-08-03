@@ -1,4 +1,14 @@
-import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { getRounds, hashSync } from "bcryptjs";
 import { Contact } from "./contacts.entity";
 @Entity("users")
@@ -18,8 +28,8 @@ class User {
   createdAt: string;
   @UpdateDateColumn({ type: "date" })
   updatedAt: string;
-  @OneToMany(() => Contact, contact => contact.user)
-  contacts: Contact[]
+  @OneToMany(() => Contact, (contact) => contact.user)
+  contacts: Contact[];
 
   @BeforeInsert()
   @BeforeUpdate()
@@ -31,4 +41,4 @@ class User {
   }
 }
 
-export { User}
+export { User };

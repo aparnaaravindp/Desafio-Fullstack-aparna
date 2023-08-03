@@ -7,7 +7,6 @@ import {
 import createContactsServices from "../services/contacts/createContacts.services";
 import listContactsServices from "../services/contacts/listContacts.services";
 import updateCotactsServices from "../services/contacts/updateContacts.services";
-import deleteUsersServices from "../services/users/deleteUsers.services";
 import deleteCotactsServices from "../services/contacts/deleteCotacts.services";
 
 const createContactController = async (
@@ -25,7 +24,7 @@ const listContactsController = async (
   res: Response
 ): Promise<Response> => {
   const userId: number = parseInt(res.locals.id);
-  console.log(userId)
+  console.log(userId);
   const contacts = await listContactsServices(userId);
   return res.status(200).json(contacts);
 };

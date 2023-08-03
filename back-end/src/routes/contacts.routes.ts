@@ -12,12 +12,7 @@ import {
   updateCotactController,
 } from "../controllers/contacts.controllers";
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
-import {
-  deleteUserController,
-  listUsersController,
-} from "../controllers/users.controllers";
 import { ownerVerifyMiddleware } from "../middlewares/ownerVerify.middleware";
-/* import { ownerVerifyMiddleware } from "../middlewares/ownerVerify.middleware"; */
 
 const contactsRoutes: Router = Router();
 

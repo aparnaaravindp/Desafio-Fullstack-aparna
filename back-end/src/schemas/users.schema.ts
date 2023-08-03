@@ -8,14 +8,12 @@ const userSchema = z.object({
   password: z.string().max(120),
   createdAt: z.string(),
   updatedAt: z.string(),
-  deletedAt: z.string().nullish(),
 });
 
 const userSchemaRequest = userSchema.omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-  deletedAt: true,
 });
 
 const userSchemaResponse = userSchema.omit({

@@ -14,7 +14,6 @@ import { emailExistsCheckMiddleware } from "../middlewares/emailExistsCheck.midd
 import { tokenValidCheckMiddleware } from "../middlewares/tokenValidCheck.middleware";
 import { userIdExistsCheckMiddleware } from "../middlewares/userIdExistsCheck.middleware";
 
-
 const usersRoutes: Router = Router();
 
 usersRoutes.post(

@@ -34,4 +34,8 @@ DELETE - /contacts/:id - Delete contact - Need authentication and authorization
 
 ## How to run the app
 
-npm run dev
+- First clone the project repository in your device
+- Install all the dependencies using **npm install**
+- For makeMigrations use this command **npm run typeorm migration:generate -- -d src/data-source src/migrations/createNameOfTheTable**
+- For run migrations use this command **npm run typeorm migration:run -- -d src/data-source**
+- Then **npm run dev**

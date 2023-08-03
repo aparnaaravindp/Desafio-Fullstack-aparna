@@ -20,7 +20,6 @@ const tokenValidCheckMiddleware = async (
       throw new AppError(err.message, 401);
     }
     res.locals.id = decoded.sub;
-
   });
   return next();
 };
