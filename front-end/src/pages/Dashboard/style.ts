@@ -147,6 +147,8 @@ export const StyledMainDiv = styled.div`
     .mainContainer {
       .userDiv {
         width: 15%;
+
+        cursor: pointer;
       }
 
       .contactSection {

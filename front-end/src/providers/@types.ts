@@ -42,6 +42,30 @@ export interface IContactData {
   telephone: number;
 }
 
+
+export interface IUserData {
+  fullname: string;
+  email: string;
+  telephone: number;
+}
+
+export interface IContactUpdateResponse {
+  id: number;
+  fullname: string;
+  email: string;
+  telephone: number;
+  createdAt: string;
+}
+
+
+export interface IUserUpdateResponse {
+  id: number;
+  fullname: string;
+  email: string;
+  telephone: number;
+  createdAt: string;
+}
+
 export interface AuthContextValues {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -52,4 +76,15 @@ export interface AuthContextValues {
   contactModal: boolean;
   setContactModal: React.Dispatch<SetStateAction<boolean>>;
   contactCreate: (data: IContactData) => Promise<void>;
+  editingStatus: null;
+  setEditingStatus: React.Dispatch<SetStateAction<null>>;
+  contactUpdateModal: boolean;
+  setContactUpdateModal: React.Dispatch<SetStateAction<boolean>>;
+  contactUpdate: (data: IContactData, contactId: number) => Promise<void>;
+  contactDelete: (contactId: number) => Promise<void>;
+  userEditingStatus:null;
+  setUserEditingStatus:React.Dispatch<SetStateAction<null>>
+  userUpdate:(data: IUserData, userId: number) => Promise<void>;
+  userDelete:(userId: number) => Promise<void>;
+
 }

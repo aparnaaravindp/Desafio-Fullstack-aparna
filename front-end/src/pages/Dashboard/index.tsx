@@ -5,10 +5,19 @@ import { StyledMainDiv } from "./style";
 import { useAuth } from "../../hooks/useAuth";
 import { CreateModal } from "../../components/CreateModal";
 import { IContact } from "../../providers/@types";
+import { UpdateModal } from "../../components/UpdateModal";
+import { UserUpdateModal } from "../../components/UserUpdateModal";
 
 export const Dashboard = () => {
   const [contacts, setContacts] = useState<IContact[]>([]);
-  const { contactModal, setContactModal } = useAuth();
+  const {
+    contactModal,
+    setContactModal,
+    setEditingStatus,
+    userEditingStatus,
+    setUserEditingStatus,
+    editingStatus,
+  } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -25,8 +34,8 @@ export const Dashboard = () => {
         <DashboardHeader />
         {contactModal ? <CreateModal /> : null}
 
-        <div className="userDiv">
-          <h1 className="userName">{user.fullname}</h1>
+        <div className="userDiv" onClick={() => setUserEditingStatus(user)}>
+          <h1  className="userName">{user.fullname} </h1>
           <p className="userEmail">{user.email}</p>
           <p className="userTelephone">{user.telephone}</p>
         </div>
@@ -45,7 +54,11 @@ export const Dashboard = () => {
           <div className="contactDetails">
             <ul>
               {contacts.map((contact) => (
-                <li key={contact.id} className="contactList">
+                <li
+                  key={contact.id}
+                  className="contactList"
+                  onClick={() => setEditingStatus(contact)}
+                >
                   <div className="contactInfo">
                     <h2 className="contactName">{contact.fullname} </h2>
                     <p className="email">{contact.email}</p>
@@ -54,6 +67,8 @@ export const Dashboard = () => {
                 </li>
               ))}
             </ul>
+            {userEditingStatus ? <UserUpdateModal /> : null}
+            {editingStatus ? <UpdateModal /> : null}
           </div>
         </div>
       </div>
