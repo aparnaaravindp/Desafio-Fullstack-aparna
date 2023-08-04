@@ -28,7 +28,7 @@ class User {
   createdAt: string;
   @UpdateDateColumn({ type: "date" })
   updatedAt: string;
-  @OneToMany(() => Contact, (contact) => contact.user)
+  @OneToMany(() => Contact, (contact) => contact.user, { cascade: true })
   contacts: Contact[];
 
   @BeforeInsert()
