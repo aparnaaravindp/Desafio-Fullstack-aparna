@@ -82,7 +82,6 @@ export const StyledModalDiv = styled.div`
           padding: 10px;
           margin-top: 10px;
         }
-       
       }
 
       .telephoneInput {
@@ -105,14 +104,13 @@ export const StyledModalDiv = styled.div`
           padding: 10px;
           margin-top: 10px;
         }
-        
       }
       .buttons {
         display: flex;
         gap: 30px;
         margin-top: 15px;
         align-items: center;
-        margin-top:20px;
+        margin-top: 20px;
 
         .updateBttn {
           width: 60%;
@@ -135,16 +133,8 @@ export const StyledModalDiv = styled.div`
           color: #ffffff;
         }
       }
-    
-
     }
-    
   }
-
-
-  
-  
-
 
   @media (min-width: 400px) {
     width: 65%;

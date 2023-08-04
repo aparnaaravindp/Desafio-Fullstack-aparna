@@ -4,23 +4,19 @@ import { useAuth } from "../../hooks/useAuth";
 import { IContactData } from "../../providers/@types";
 
 export function UpdateModal() {
-  const {
-    editingStatus,
-    setEditingStatus,
-    contactUpdate,
-    contactDelete,
-  } = useAuth();
+  const { editingStatus, setEditingStatus, contactUpdate, contactDelete } =
+    useAuth();
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      fullname: editingStatus.fullname,
-      email: editingStatus.email,
-      telephone: editingStatus.telephone,
+      fullname: editingStatus!.fullname,
+      email: editingStatus!.email,
+      telephone: editingStatus!.telephone,
     },
   });
 
   const submit = async (data: IContactData) => {
-    await contactUpdate(data, editingStatus.id);
+    await contactUpdate(data, editingStatus!.id);
     setEditingStatus(null);
   };
 
@@ -67,7 +63,7 @@ export function UpdateModal() {
               className="deleteBttn"
               type="button"
               onClick={async () => {
-                await contactDelete(editingStatus.id);
+                await contactDelete(editingStatus!.id);
                 setEditingStatus(null);
               }}
             >

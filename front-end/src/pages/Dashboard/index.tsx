@@ -35,7 +35,7 @@ export const Dashboard = () => {
         {contactModal ? <CreateModal /> : null}
 
         <div className="userDiv" onClick={() => setUserEditingStatus(user)}>
-          <h1  className="userName">{user.fullname} </h1>
+          <h1 className="userName">{user.fullname} </h1>
           <p className="userEmail">{user.email}</p>
           <p className="userTelephone">{user.telephone}</p>
         </div>

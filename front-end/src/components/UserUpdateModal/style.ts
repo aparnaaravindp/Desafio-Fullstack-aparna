@@ -161,8 +161,5 @@ export const StyledModalDiv = styled.div`
         cursor: pointer;
       }
     }
-    .techRegButton {
-      cursor: pointer;
-    }
   }
 `;

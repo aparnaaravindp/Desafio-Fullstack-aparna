@@ -26,8 +26,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [contactModal, setContactModal] = useState(false);
   const [contactData, setContactData] = useState<IContact[]>([]);
   const [contactUpdateModal, setContactUpdateModal] = useState(false);
-  const [editingStatus, setEditingStatus] = useState(null);
-  const [userEditingStatus, setUserEditingStatus] = useState(null);
+  const [editingStatus, setEditingStatus] = useState<IContact | null>(
+    {} as IContact
+  );
+  const [userEditingStatus, setUserEditingStatus] = useState<IUser | null>(
+    {} as IUser
+  );
 
   const navigate = useNavigate();
 
@@ -124,8 +128,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const contactDelete = async (contactId: number) => {
     try {
-      const response = await api.delete(`/contacts/${contactId}`);
-      setContactData(response.data);
+      await api.delete(`/contacts/${contactId}`);
+
       toast.success("Contact deleted successfully", { autoClose: 2000 });
 
       const newContactData = contactData.filter(
@@ -155,6 +159,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const userDelete = async (userId: number) => {
     try {
       await api.delete(`/users/${userId}`);
+      localStorage.removeItem("@TOKEN");
 
       toast.success("User deleted successfully", { autoClose: 2000 });
       navigate("/");

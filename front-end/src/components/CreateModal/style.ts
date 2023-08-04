@@ -167,7 +167,7 @@ export const StyledModalDiv = styled.div`
         cursor: pointer;
       }
     }
-    .techRegButton {
+    .contactRegButton {
       cursor: pointer;
     }
   }
